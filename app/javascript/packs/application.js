@@ -10,6 +10,18 @@ import "channels"
 import "jquery"
 import "bootstrap"
 
-Rails.start()
-Turbolinks.start()
-ActiveStorage.start()
+// const componentContext = require.context("../../components/", true, /(.*)\/.+\.js$/);
+// application.load(definitionsFromContext(componentContext));
+
+// Rails.start()
+// Turbolinks.start()
+// ActiveStorage.start()
+
+import { Application } from "stimulus"
+import { definitionsFromContext } from "stimulus/webpack-helpers"
+
+const application = Application.start();
+
+// requires all of the controllers in the app/components directory.
+const componentContext = require.context("../../components/", true, /(.*)\/.+\.js$/);
+application.load(definitionsFromContext(componentContext));

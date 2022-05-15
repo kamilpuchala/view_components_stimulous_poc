@@ -11,7 +11,7 @@ class Shared::Header::ComponentTest < ViewComponent::TestCase
   end
 
   test "render component when logged out" do
-    render_inline(render_inline(Shared::Header::Component.new(current_user: users(:michael), logged_in: false)))
+    render_inline(Shared::Header::Component.new(current_user: users(:michael), logged_in: false))
 
     assert_link("Log in")
     refute_link("Log out")
