@@ -4,7 +4,7 @@ This is a training of view components and stimulus.js implementation in rails ap
 Application which was used: [*Ruby on Rails Tutorial: Learn Web Development with Rails*](https://github.com/learnenough/sample_app_6th_ed), [*Ruby on Rails Tutorial:
 Learn Web Development with Rails*](https://www.railstutorial.org/)
 Base concepts, of POC bnased on [*Tutorial*](https://fugu.dev/2020-04-15-working-with-view-component-and-stimulus-part-1/),
-with additional extensions
+with additional extensions, since commit "a796303"
 
 ## License
 
