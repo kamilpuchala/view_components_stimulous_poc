@@ -22,7 +22,7 @@
     <h3><%= @title %></h3>
     <% if @users.any? %>
       <ul class="users follow">
-        <%= render User::List::Component.with_collection(@users) %>
+        <%= render User::List::Component.new(users: @users) %>
       </ul>
       <%= will_paginate %>
     <% end %>

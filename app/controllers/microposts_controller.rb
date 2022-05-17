@@ -6,12 +6,8 @@ class MicropostsController < ApplicationController
     @micropost = current_user.microposts.build(micropost_params)
     @micropost.image.attach(params[:micropost][:image])
     if @micropost.save
-      current_user.followers.each do |follower|    
-        ::MicropostFeedChannel.broadcast_to(
-            follower,
-            content: render_to_string(Feed::Micropost::Component.new(micropost: @micropost))
-        )
-      end
+      broadcast_micropost
+
       flash[:success] = "Micropost created!"
       redirect_to root_url
     else
@@ -32,12 +28,21 @@ class MicropostsController < ApplicationController
 
   private
 
-    def micropost_params
-      params.require(:micropost).permit(:content, :image)
-    end
+  def micropost_params
+    params.require(:micropost).permit(:content, :image)
+  end
 
-    def correct_user
-      @micropost = current_user.microposts.find_by(id: params[:id])
-      redirect_to root_url if @micropost.nil?
+  def correct_user
+    @micropost = current_user.microposts.find_by(id: params[:id])
+    redirect_to root_url if @micropost.nil?
+  end
+
+  def broadcast_micropost
+    current_user.followers.each do |follower|    
+      ::MicropostFeedChannel.broadcast_to(
+          follower,
+          content: render_to_string(Feed::Micropost::Component.new(micropost: @micropost))
+      )
     end
+  end
 end
