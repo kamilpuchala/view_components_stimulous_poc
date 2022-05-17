@@ -12,4 +12,12 @@ export default class extends Controller {
         }
      })
   }
+
+  remove(event) {
+    let confirmed = confirm('Are you sure?')
+
+    if(!confirmed) {
+      event.preventDefault()
+    }
+  }
 }

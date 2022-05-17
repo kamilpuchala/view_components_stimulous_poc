@@ -1,14 +1,13 @@
 class User::List::Component < ViewComponent::Base
-  include ::SessionsHelper
-  include ::UsersHelper
-
-  with_collection_parameter :user
-
-  def initialize(user:)
-    @user = user
+  def initialize(users:)
+    @users = users
   end
 
   private
 
-  attr_reader :user
+  attr_reader :users
+
+  def render?
+    users.any?
+  end
 end
