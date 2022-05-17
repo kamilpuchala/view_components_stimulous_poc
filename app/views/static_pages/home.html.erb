@@ -5,7 +5,7 @@
         <%= render 'shared/user_info' %>
       </section>
       <section class="stats">
-        <%= render 'shared/stats' %>
+        <%= render User::Statistics::Component.new %>
       </section>
       <section class="micropost_form">
         <%= render Feed::MicropostForm::Component.new(micropost: @micropost) %>
